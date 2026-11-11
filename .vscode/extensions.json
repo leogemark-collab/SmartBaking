@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "laravel.vscode-laravel",
+    "bradlc.vscode-tailwindcss",
+    "ms-python.python",
+    "charliermarsh.ruff"
+  ]
+}

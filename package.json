@@ -1,0 +1,19 @@
+{
+  "name": "smartbaking-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local development orchestration for the SmartBaking Laravel and forecasting services",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "setup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup.ps1",
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev.ps1",
+    "dev:services": "concurrently --kill-others --names laravel,vite,forecast --prefix-colors blue,magenta,green \"php apps/web/artisan serve --host=127.0.0.1 --port=8000\" \"npm --prefix apps/web run dev -- --host=127.0.0.1\" \"uv run --project services/forecasting --locked smartbaking-forecasting-serve\"",
+    "check": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check.ps1",
+    "doctor": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/doctor.ps1"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}

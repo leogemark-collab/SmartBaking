@@ -1,0 +1,5 @@
+# Project-local Laravel tooling. Inherits the user's model and permissions.
+[mcp_servers.laravel-boost]
+command = "php"
+args = ["apps/web/artisan", "boost:mcp"]
+startup_timeout_sec = 60

@@ -1,0 +1,54 @@
+# Machine-local dependencies and runtimes
+node_modules/
+**/node_modules/
+**/vendor/
+.tools/
+.runtime/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+**/*.egg-info/
+
+# Credentials, databases, generated forecasts, and research data
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+**/*.sqlite
+**/*.sqlite-*
+**/*.db
+data/
+artifacts/
+services/forecasting/data/
+services/forecasting/artifacts/
+**/*.joblib
+**/*.pkl
+**/*.pickle
+
+# Local logs and editor state
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Laravel and frontend generated state
+apps/web/public/build/
+apps/web/public/hot
+apps/web/storage/*.key
+apps/web/bootstrap/cache/*.php
+apps/web/.phpunit.cache/
+apps/web/.phpunit.result.cache
+apps/web/resources/js/actions/
+apps/web/resources/js/routes/
+apps/web/resources/js/wayfinder/
+apps/web/ssr/
+coverage/
+**/.coverage
+**/htmlcov/

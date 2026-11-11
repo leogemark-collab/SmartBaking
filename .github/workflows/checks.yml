@@ -1,0 +1,65 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    name: Laravel and frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, intl, pdo_sqlite, sqlite3
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --prefer-dist
+      - name: Configure isolated application
+        run: |
+          cp .env.example .env
+          php artisan key:generate --no-interaction
+      - name: Install frontend dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build frontend
+        run: npm run build
+      - name: Check TypeScript
+        run: npm run types:check
+      - name: Check PHP types
+        run: composer types:check
+      - name: Test Laravel
+        run: php artisan test
+
+  forecasting:
+    name: Python forecasting
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/forecasting
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          python-version: '3.12'
+          enable-cache: true
+          cache-dependency-glob: services/forecasting/uv.lock
+      - name: Install locked Python dependencies
+        run: uv sync --locked
+      - name: Test forecasting service
+        run: uv run --locked pytest
+      - name: Smoke-test forecasting dependencies
+        run: uv run --locked smartbaking-forecasting-smoke

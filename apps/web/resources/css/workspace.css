@@ -1,0 +1,111 @@
+.workspace,
+body:has(.workspace) [data-slot='dialog-content'] {
+    color-scheme: light;
+    --background: #fffdf9;
+    --foreground: #332c25;
+    --card: #ffffff;
+    --card-foreground: #332c25;
+    --popover: #ffffff;
+    --popover-foreground: #332c25;
+    --primary: #a6533b;
+    --primary-foreground: #fff;
+    --secondary: #f1eee7;
+    --secondary-foreground: #665b4e;
+    --muted: #f6f3ee;
+    --muted-foreground: #82766a;
+    --accent: #f5eee5;
+    --accent-foreground: #6b503d;
+    --border: #e9e4dc;
+    --input: #ddd6cb;
+    --ring: #be896d;
+    --destructive: #b34a38;
+    color: #332c25;
+    font-family: 'Instrument Sans', sans-serif;
+}
+.workspace {
+    background: #f8f7f3;
+}
+.workspace button,
+.workspace select {
+    cursor: pointer;
+}
+.workspace button:disabled {
+    cursor: default;
+}
+.workspace :focus-visible {
+    outline: 2px solid #a6533b;
+    outline-offset: 3px;
+}
+.workspace .ws-input,
+body:has(.workspace) .ws-input {
+    min-height: 40px;
+    width: 100%;
+    border: 1px solid #e3ddd3;
+    border-radius: 8px;
+    background: #fff;
+    padding: 9px 12px;
+    font-size: 13px;
+    color: #4e4236;
+}
+.workspace .ws-input::placeholder {
+    color: #a79a8b;
+}
+.workspace .ws-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 12px;
+}
+.workspace .ws-table thead {
+    background: #faf9f6;
+    color: #8e8275;
+}
+.workspace .ws-table th {
+    padding: 13px 22px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.workspace .ws-table td {
+    padding: 17px 22px;
+    border-top: 1px solid #f0ece6;
+}
+.workspace .ws-table tbody tr:hover {
+    background: #fdfbf7;
+}
+.workspace .ws-tab {
+    border-radius: 7px;
+    padding: 7px 13px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #8a7c6c;
+}
+.workspace .ws-tab[aria-selected='true'],
+.workspace .ws-tab[aria-pressed='true'] {
+    background: #fff;
+    color: #a6533b;
+    box-shadow: 0 1px 4px #30292010;
+}
+.workspace .recharts-wrapper:focus {
+    outline: none;
+}
+.workspace .recharts-cartesian-axis-tick-value {
+    fill: #9c9184;
+    font-size: 10px;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .workspace .ws-page {
+        animation: workspace-enter 0.25s ease-out;
+    }
+    @keyframes workspace-enter {
+        from {
+            opacity: 0.4;
+            transform: translateY(5px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
